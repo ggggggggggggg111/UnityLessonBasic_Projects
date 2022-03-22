@@ -9,9 +9,11 @@ public class Node : MonoBehaviour
     public Color buildNotAvailableColor;
 
     Renderer rend;
+    BoxCollider col;
     private void Awake()
     {
         rend = GetComponent<Renderer>();
+        col = GetComponent<BoxCollider>();
         originColor = rend.material.color;
     }
     private void OnMouseEnter()
@@ -19,7 +21,7 @@ public class Node : MonoBehaviour
         rend.material.color = buildAvailableColor;
         if (TowerViewPresenter.instance.isSelected)
         {
-            TowerViewPresenter.instance .GetTowerPreviewTransform().position = transform.position;
+            TowerViewPresenter.instance.GetTowerPreviewTransform().position = transform.position + new Vector3(0, col.size.y / 2, 0); ;
         }
     }
     private void OnMouseExit()
@@ -29,6 +31,14 @@ public class Node : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        //bulld
+        
+        
+            if (TowerViewPresenter.instance.isSelected)
+            {
+            Transform previewTransform = TowerViewPresenter.instance.GetTowerPreviewTransform();
+            ObjectPool.SpawnFromPool(previewTransform.GetComponent<TowerPraview>().towerName,
+                                     previewTransform.position);
+            }
+        
     }
 }
