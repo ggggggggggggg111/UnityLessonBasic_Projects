@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    bool isTowerHere
+    {
+        get 
+        { 
+            return towerInfo != null;
+        }
+    }
+    TowerInfo towerInfo;
+
     private Color originColor;
     public Color buildAvailableColor;
     public Color buildNotAvailableColor;
@@ -18,27 +27,62 @@ public class Node : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        rend.material.color = buildAvailableColor;
+        
         if (TowerViewPresenter.instance.isSelected)
         {
-            TowerViewPresenter.instance.GetTowerPreviewTransform().position = transform.position + new Vector3(0, col.size.y / 2, 0); ;
+            Transform previewTransform = TowerViewPresenter.instance.GetTowerPreviewTransform();
+            previewTransform.gameObject.SetActive(true);
+            previewTransform.position = transform.position + new Vector3(0, col.size.y / 2, 0);
+            if (isTowerHere)
+                rend.material.color = buildNotAvailableColor;
+            else
+                rend.material.color =buildAvailableColor;
         }
     }
     private void OnMouseExit()
     {
         rend.material.color = originColor;
-
     }
     private void OnMouseDown()
     {
-        
-        
-            if (TowerViewPresenter.instance.isSelected)
+        if (Input.GetMouseButtonDown(0))
+
+        {
+            if (isTowerHere && TowerViewPresenter.instance.isSelected==false) 
+
             {
-            Transform previewTransform = TowerViewPresenter.instance.GetTowerPreviewTransform();
-            ObjectPool.SpawnFromPool(previewTransform.GetComponent<TowerPraview>().towerName,
-                                     previewTransform.position);
+                
+                TowerUi.instance.upgradePriceText.text =towerInfo.price.ToString();
+                TowerUi.instance.sellPreiceText.text = (towerInfo.price*0.8).ToString();
+                TowerUi.instance.transform.position = transform.position + Vector3.up * 2;
+                TowerUi.instance.node = this;
+                TowerUi.instance.gameObject.SetActive(true);
+            }else if (isTowerHere == false && TowerViewPresenter.instance.isSelected)
+            {
+
+                Transform previewTransform = TowerViewPresenter.instance.GetTowerPreviewTransform();
+
+                string towerName = previewTransform.GetComponent<TowerPraview>().towerName;
+
+                ObjectPool.SpawnFromPool(towerName,
+                                       previewTransform.position);
+
+                if (TowerAssets.Instance.TryGetTowerInfoByName(towerName, out TowerInfo tmpTowerInfo))
+                {
+                    towerInfo = tmpTowerInfo;
+                }
+                previewTransform.gameObject.SetActive(false);
+                TowerViewPresenter.instance.SetTowerHandler(null);
             }
-        
+
+
+
+
+        }
+        else
+        {
+            TowerViewPresenter.instance.SetTowerHandler(null);
+        }
     }
+      
 }
