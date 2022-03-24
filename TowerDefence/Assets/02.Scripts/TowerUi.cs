@@ -17,18 +17,24 @@ public class TowerUi : MonoBehaviour
     public Node node;
 
     public Text upgradePriceText;
-    public Text sellPreiceText;
+    public Text sellPriceText;
+    private void OnDisable()
+    {
+        node = null;
+        upgradePriceText.text = "";
+        sellPriceText.text = "";
+    }
     public void OnUpgradeButton()
     {
-        int nextLevel = node.towerInfo.level + 1;
-        TowerAssets.Instance.TryGetTowerName(node.towerInfo.type,nextLevel,out string)
+        int nextLevel = node.tower.info.level + 1;
+        if (TowerAssets.instance.TryGetTowerName(node.tower.info.type, nextLevel, out string towerName))
         {
-
+            node.BuildTowerHere(towerName);
         }
     }
 
     public void OnSellButton()
     {
-
+        node.DestoryTowerHere();
     }
 }

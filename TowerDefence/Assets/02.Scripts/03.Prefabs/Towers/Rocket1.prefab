@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1774317658983706186}
-  - component: {fileID: 5927650902452795489}
+  - component: {fileID: 2139107073624427474}
   m_Layer: 0
   m_Name: Rocket1
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5927650902452795489
+--- !u!114 &2139107073624427474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: f3092aea1e3fd494aa8d546d2ed3570d, type: 2}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
+  detectRange: 2
+  turretRotatePosition: {fileID: 1774317658983706186}
 --- !u!1001 &4509565952865173069
 PrefabInstance:
   m_ObjectHideFlags: 0

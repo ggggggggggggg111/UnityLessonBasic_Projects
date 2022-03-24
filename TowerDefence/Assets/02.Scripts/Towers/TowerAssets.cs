@@ -5,7 +5,7 @@ using UnityEngine;
  public class TowerAssets : MonoBehaviour
 {
     public static TowerAssets _instance;
-    public static TowerAssets Instance
+    public static TowerAssets instance
     {
         get
         {
@@ -33,12 +33,19 @@ using UnityEngine;
     }
     public bool TryGetTowerName(TowerType type,int level,out string towerName)
     {
-        towerName =towers.Find(x=>x.GetComponent<Tower>().info.type ==type && x.GetComponent<Tower>().info.level == level).name;
+        towerName = null;
+        if(level < 4)
+        {
+            towerName = towers.Find(x => x.name == type.ToString() + level.ToString()).name;
+            
+        }
         return towerName.Length > 1 ? true : false;
+
     }
-    public bool  TryGetTowerInfoByName(string towerName,out TowerInfo towerInfo)
+
+    public bool  TryGetTowerByName(string towerName,out Tower tower)
     {
-        towerInfo = towers.Find(x=>x.name == towerName).GetComponent<Tower>().info;
-        return towerInfo != null ? true : false;
+        tower = towers.Find(x=>x.name == towerName).GetComponent<Tower>();
+        return tower != null ? true : false;
     }
 }
