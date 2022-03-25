@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1774317658983706186}
-  - component: {fileID: 5927650902452795489}
+  - component: {fileID: -1290954306764542424}
   m_Layer: 0
   m_Name: MachineGun3
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5927650902452795489
+--- !u!114 &-1290954306764542424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 446570307902744303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 259e4c3d9da076e479035994a0f45581, type: 3}
+  m_Script: {fileID: 11500000, guid: 28891538d176fe6449ec2ae52440bf89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: 0f4cf5d65b4320744ba7dd9aea8ad8ed, type: 2}
@@ -50,7 +50,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1048576
   detectRange: 2
-  turretRotatePosition: {fileID: 1774317658983706186}
+  turretRotatePosition: {fileID: 5754069345102075510}
+  target: {fileID: 0}
+  damage: 20
+  reloadTime: 0.6
+  reloadTimer: 0
 --- !u!1001 &4017185077519668717
 PrefabInstance:
   m_ObjectHideFlags: 0

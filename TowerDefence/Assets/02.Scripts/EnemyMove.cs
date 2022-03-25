@@ -34,6 +34,7 @@ public class EnemyMove : MonoBehaviour
             if (WayPoints.TryGetNextWayPoint(wayPointIndex, out nextWayPoint))
             {
                 wayPointIndex++;
+                tr.LookAt(nextWayPoint);
             }   
             else
             {
@@ -45,6 +46,7 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnReachedToEnd()
     {
+        
         gameObject.SetActive(false);
     }
     
