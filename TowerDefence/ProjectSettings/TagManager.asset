@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
+  - Node
+  - EnemyPath
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Tower
+  - TowerProjectDie
   - 
   - 
   - 
